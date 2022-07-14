@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+
 public class CustomerRepositoryImp implements ICustomerRepository{
 
     @PersistenceContext
