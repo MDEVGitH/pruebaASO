@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class CustomerController {
+public class CustomerController implements ICustomerController{
 
     @Autowired
     private ICustomerService service;
@@ -30,6 +30,12 @@ public class CustomerController {
     @PostMapping("/api/customer")
     public void saveCustomer(@RequestBody Customer customer){
         service.saveCustomer(customer);
+    }
+
+    @Override
+    @PutMapping("/api/customer/{id}")
+    public void updateCustomer(@RequestBody Customer customer, @PathVariable String id){
+        service.updateCustomer(customer, Long.parseLong(id));
     }
 
 }

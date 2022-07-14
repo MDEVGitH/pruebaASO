@@ -1,7 +1,7 @@
 package com.aso.demo.services;
 
 import com.aso.demo.entities.Customer;
-import com.aso.demo.repository.CustomerRepository;
+import com.aso.demo.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,8 @@ import java.util.List;
 public class CustomerService implements ICustomerService{
 
     @Autowired
-    private CustomerRepository repository;
+    private ICustomerRepository repository;
+
 
     @Override
     public List<Customer> getAll(){
@@ -21,7 +22,7 @@ public class CustomerService implements ICustomerService{
     @Override
     public Customer getCustomer(Long id) {
         try{
-            return (Customer) repository.findById(id).get();
+            return repository.findById(id);
         }catch (Exception e){
             return null;
         }
@@ -39,5 +40,14 @@ public class CustomerService implements ICustomerService{
     @Override
     public void saveCustomer(Customer customer){
         repository.save(customer);
+    }
+
+    @Override
+    public void updateCustomer(Customer customer,Long id) {
+        try{
+            repository.update(customer, id);
+        }catch(Exception e){
+
+        }
     }
 }

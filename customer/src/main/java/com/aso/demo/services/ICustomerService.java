@@ -10,4 +10,5 @@ public interface ICustomerService {
     public Customer getCustomer(Long id);
     public void deleteCustomer(Long id);
     public void saveCustomer(Customer customer);
+    public void updateCustomer(Customer customer, Long id);
 }
